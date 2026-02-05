@@ -1,6 +1,6 @@
 const siteData = {
   // Basic Site Info
-  logo: "/assets/images/ieee-logo.png",
+  logo: "/assets/images/ieee-blue-logo.png",
   siteName: "IEEE SB MIET",
   
   // Navigation

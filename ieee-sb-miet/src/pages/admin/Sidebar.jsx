@@ -42,9 +42,9 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
       `}>
         <div className="h-full flex flex-col">
           {/* Logo and Title */}
-          <div className="flex items-center justify-between h-16 px-6 border-b">
-            <Link to="/admin/dashboard" className="flex items-center space-x-3">
-              <img src="/assets/images/ieee-blue-logo.png" alt="IEEE Logo" className="h-48 pt-2 ml-6 mt-4 w-auto" />
+          <div className="flex items-center justify-between h-16 px-4 border-b shrink-0">
+            <Link to="/admin/dashboard" className="flex items-center">
+              <img src="/assets/images/ieee-blue-logo.png" alt="IEEE Logo" className="h-12 w-auto object-contain" />
             </Link>
             <button 
               onClick={() => setIsOpen(false)}
