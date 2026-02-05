@@ -1,6 +1,10 @@
-// API base URL - backend mounts all routes under /api prefix
-// Fallback for local dev when .env not configured
-const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+// API base URL from env (must include /api prefix). Centralized for all API calls.
+const BASE_URL = import.meta.env.VITE_API_BASE_URL || import.meta.env.VITE_API_URL;
+
+export const getApiBaseUrl = () => BASE_URL;
+
+/** Server origin (base URL without /api) for building asset URLs from relative paths */
+export const getServerOrigin = () => (BASE_URL || '').replace(/\/api\/?$/, '');
 
 export const API_ENDPOINTS = {
   LOGIN: `${BASE_URL}/admin/login`,

@@ -1,8 +1,8 @@
-require('dotenv').config();
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '.env') });
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const path = require('path');
 
 // ==> Essential Variable Checks
 const requiredEnv = [
@@ -23,13 +23,10 @@ if (missingEnv.length > 0) {
 
 const app = express();
 
-// CORS - allow frontend origin for local dev and production
+// CORS - allowed origins from env (no hardcoded localhost)
 const allowedOrigins = [
-  'http://localhost:5173',
-  'http://localhost:3000',
-  'http://127.0.0.1:5173',
-  'http://127.0.0.1:3000',
-  process.env.FRONTEND_URL
+  process.env.FRONTEND_URL,
+  ...(process.env.CORS_ORIGINS ? process.env.CORS_ORIGINS.split(',').map(s => s.trim()).filter(Boolean) : [])
 ].filter(Boolean);
 
 app.use(cors({
@@ -66,6 +63,7 @@ app.get('/', (req, res) => {
 });
 
 const PORT = process.env.PORT || 5000;
+const BASE_URL = process.env.BASE_URL;
 let server;
 
 // ==> Connect to DB and then start server
@@ -74,7 +72,7 @@ mongoose.connect(process.env.MONGODB_URI)
   .then(() => {
     console.log('MongoDB Connected Successfully');
     server = app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
+      console.log(`Server running on port ${PORT}${BASE_URL ? ` (base: ${BASE_URL})` : ''}`);
     });
   })
   .catch((err) => {

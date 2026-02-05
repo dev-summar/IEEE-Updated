@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { API_ENDPOINTS } from "../config/api";
+import { API_ENDPOINTS, getServerOrigin } from "../config/api";
 import { SpeakerWaveIcon, SpeakerXMarkIcon } from "@heroicons/react/24/solid";
 
 const Hero = () => {
@@ -57,7 +57,7 @@ const Hero = () => {
           }
           
           // For relative paths: use server origin (without /api) + path. Cloudinary URLs are used as-is.
-          const serverOrigin = (import.meta.env.VITE_API_URL || 'http://localhost:5000/api').replace(/\/api\/?$/, '');
+          const serverOrigin = getServerOrigin();
           const formattedBanners = bannerData.map(item => ({
             ...item,
             image: item.image && item.image.startsWith('http') ? item.image : `${serverOrigin}${item.image?.startsWith('/') ? '' : '/'}${item.image || ''}`
