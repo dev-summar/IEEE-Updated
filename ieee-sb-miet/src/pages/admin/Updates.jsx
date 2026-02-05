@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { PlusIcon, TrashIcon, PhotoIcon } from '@heroicons/react/24/outline';
-import { API_ENDPOINTS, getAuthHeader } from '../../config/api';
+import { API_ENDPOINTS, getAuthHeader, getServerOrigin } from '../../config/api';
 import UpdatesForm from './components/UpdatesForm';
 import DeleteConfirmation from './components/DeleteConfirmation';
 import CloudinaryImage from '../../components/CloudinaryImage';
@@ -26,7 +26,7 @@ const Updates = () => {
       console.log(data)
       const formattedData = data.map(item => ({
         ...item,
-        image: item.image.startsWith('http') ? item.image : `${process.env.REACT_APP_API_URL}${item.image}`
+        image: item.image.startsWith('http') ? item.image : `${getServerOrigin()}${item.image}`
       }));
       setGallery(formattedData);
     } catch (error) {

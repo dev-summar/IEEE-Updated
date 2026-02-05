@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import siteData from '../utils/siteData';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
-import { API_ENDPOINTS } from '../config/api';
+import { API_ENDPOINTS, getServerOrigin } from '../config/api';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -19,7 +19,7 @@ const Gallery = () => {
           //console.log(data)
           const formattedData = data.map(item => ({
             ...item,
-            image: item.image.map(img => img.startsWith('http') ? img : `${process.env.REACT_APP_API_URL}${item.image}`)
+            image: item.image.map(img => img.startsWith('http') ? img : `${getServerOrigin()}${img}`)
           }));
           //console.log(formattedData)
           setgallery(formattedData);

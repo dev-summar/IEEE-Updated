@@ -1,6 +1,6 @@
-// API base URL from env only (must include /api prefix). Set in .env via VITE_API_BASE_URL.
-// No hardcoded fallback; requests never go to localhost unless defined in .env.
-const BASE_URL = import.meta.env.VITE_API_BASE_URL || import.meta.env.VITE_API_URL;
+// Single source for API base URL (Vite: set VITE_API_BASE_URL in .env / .env.production).
+// Must include /api prefix. No hardcoded fallback — production uses .env.production only.
+const BASE_URL = import.meta.env.VITE_API_BASE_URL ?? '';
 
 export const getApiBaseUrl = () => BASE_URL;
 

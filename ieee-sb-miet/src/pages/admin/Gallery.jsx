@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { PlusIcon, TrashIcon, PhotoIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
-import { API_ENDPOINTS, getAuthHeader } from '../../config/api';
+import { API_ENDPOINTS, getAuthHeader, getServerOrigin } from '../../config/api';
 import GalleryForm from './components/GalleryForm';
 import DeleteConfirmation from './components/DeleteConfirmation';
 import CloudinaryImage from '../../components/CloudinaryImage';
@@ -25,7 +25,7 @@ const Gallery = () => {
       const data = await response.json();
       const formattedData = data.map(item => ({
         ...item,
-        image: item.image.map(img => img.startsWith('http') ? img : `${process.env.REACT_APP_API_URL}${item.image}`)
+        image: item.image.map(img => img.startsWith('http') ? img : `${getServerOrigin()}${img}`)
       }));
       setGallery(formattedData);
       setCurrentImage(
