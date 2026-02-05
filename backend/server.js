@@ -6,6 +6,7 @@ const cors = require('cors');
 
 // ==> Essential Variable Checks
 const requiredEnv = [
+  'PORT',
   'MONGODB_URI',
   'JWT_SECRET',
   'CLOUDINARY_CLOUD_NAME',
@@ -62,7 +63,7 @@ app.get('/', (req, res) => {
   res.send('IEEE SB MIET Backend is running');
 });
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT;
 const BASE_URL = process.env.BASE_URL;
 let server;
 
