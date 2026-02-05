@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import siteData from "../utils/siteData";
+import mietLogo from "../assets/miet-logo-white.png";
+import ieeeLogo from "../assets/IEEE.jpg";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,8 +20,9 @@ const Navbar = () => {
     <nav className="bg-ieeeBlue fixed w-full top-0 z-50">
       <div className="container mx-auto px-4 py-3">
         <div className="flex justify-between items-center">
-          <Link to="/">
-            <img src={siteData.logo} alt="IEEE MIET Logo" className="h-16" />
+          <Link to="/" className="flex items-center gap-3">
+            <img src={mietLogo} alt="MIET Logo" className="h-16" />
+            <img src={ieeeLogo} alt="IEEE Logo" className="h-16" />
           </Link>
           
           {/* Desktop Navigation */}

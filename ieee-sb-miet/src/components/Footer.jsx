@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import siteData from "../utils/siteData";
+import mietLogo from "../assets/miet-logo-white.png";
+import ieeeLogo from "../assets/IEEE.jpg";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -12,7 +14,10 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-8">
           {/* About Section */}
           <div>
-            <img src={siteData.logo} alt="IEEE MIET Logo" className="h-12 mb-4" />
+            <div className="flex items-center gap-3 mb-4">
+            <img src={mietLogo} alt="MIET Logo" className="h-12" />
+            <img src={ieeeLogo} alt="IEEE Logo" className="h-12" />
+          </div>
             <p className="text-gray-400 mb-4">
               Empowering students through technology, innovation, and professional development.
             </p>
